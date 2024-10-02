@@ -1,0 +1,29 @@
+Modulo festivales:
+Post: 
+{
+    "name": "Ultra Music Festival",
+    "location": {
+        "city": "Miami",
+        "state": "Florida",
+        "country": "USA"
+    },
+    "dates": {
+        "start": "2024-03-22",
+        "end": "2024-03-24"
+    },
+    "genres": [
+        "Electronic",
+        "House",
+        "Techno"
+    ],
+    "headliners": [
+        "Tiësto",
+        "Carl Cox",
+        "Skrillex"
+    ],
+    "ticketPrice": {
+        "average": 350,
+        "currency": "USD"
+    },
+    "capacity": 50000
+}

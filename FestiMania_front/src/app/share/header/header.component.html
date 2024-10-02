@@ -1,0 +1,38 @@
+<header>
+  <nav [ngClass]="{'navbar navbar-expand-lg navbar-light fixed-top py-0': true, 'navbar-shrink': scroll}" id="mainNav">
+
+    <div class="row container-fluid px-4 px-lg-5">
+      <div class="col-lg-4 col-md-4" routerLink="/home">
+        <img *ngIf="scroll" src="../../../assets/images/logoBlack.jpeg" alt="" height="px" width="70px">
+        <img *ngIf="!scroll" src="../../../assets/images/logoWhite.jpeg" alt="" height="70px" width="70px">
+        <a routerLink="/home" id="name" class="navbar-brand">FESTIMANIA</a>
+      </div>
+
+      <div *ngIf="inFestival" id="menuSidebar" class="col-lg-4 col-sm-4">
+        <button (click)="hiddenSidebar()" class="header-menu-button">
+          <i class="pi pi-bars" style="font-size: 1.5rem"></i>
+        </button>
+      </div>
+
+      <div class="col-md-4 navbar-toggler text-center border-0" id="menuHeader">
+        <button (click)="toggleCollapse()" class="header-menu-button" data-bs-toggle="collapse" data-bs-target="#menu"
+          aria-controls="menu" aria-expanded="true">
+          <i class="pi pi-ellipsis-v" style="font-size: 1.5rem"></i>
+        </button>
+      </div>
+
+
+        <div class="col-lg-4 collapse navbar-collapse pe-5 text-center" [class.show]="show" id="menu">
+          <ul class="navbar-nav ms-auto my-2 my-lg-0">
+            <li *ngIf="true" class="nav-item"><a routerLink="/auth/login" class="nav-link" href="#">Iniciar sesión</a></li>
+            <li *ngIf="true" class="nav-item"><a routerLink="/auth/register" class="nav-link" href="#">Registrar</a></li>
+            <li *ngIf="true" class="nav-item"><a routerLink="/festival/home" class="nav-link" href="#">Menú</a></li>
+            <li *ngIf="true" (click)="logout()" class="nav-item"><a class="nav-link" href="#">Cerrar sesión</a></li>
+          </ul>
+        </div>
+
+    </div>
+
+  </nav>
+</header>
+

@@ -1,0 +1,93 @@
+.festival-details-container {
+    /* max-width: 900px; */
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #f9f9f9;
+  }
+  
+  .festival-card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .festival-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .festival-header h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  .festival-header .festival-location {
+    font-size: 1.2rem;
+    color: #888;
+  }
+  
+  .festival-details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .detail-item {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .detail-label {
+    font-weight: bold;
+    color: #333;
+  }
+
+  .detail-label-right {
+    text-align: right;
+    display: block;
+    width: 80%; 
+  }
+
+  .detail-item-right {
+    width: 80%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  .detail-value {
+    color: #555;
+    font-size: 1.1rem;
+  }
+  
+  .genre-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .genre-tag {
+    background-color: #ff5722;
+    color: #fff;
+    padding: 0.25rem 0.75rem;
+    border-radius: 16px;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .artists-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .artists-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .artists-list li:last-child {
+    border-bottom: none;
+  }
+

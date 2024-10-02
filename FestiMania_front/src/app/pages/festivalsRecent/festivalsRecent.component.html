@@ -1,0 +1,29 @@
+<div class="untree_co-section">
+  <div class="container">
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="0">
+        <h2 class="line-bottom text-center mb-4">Próximos festivales</h2>
+        <p>No te pierdas los festivales más recientes para que disfrutes con tus amigos y familiares en un entorno seguro y con una calidad asegurada</p>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center">
+    
+      <div *ngFor="let festival of festivals;let indice=index" class="col-md-6 ps-2 mb-4 mb-lg-0 col-lg-4" data-aos="fade-up" data-aos-delay="00">
+        <div *ngIf="indice<=2" class="pricing">
+          <div class="pricing-body">
+
+            <h3 class="pricing-plan-title">{{ festival.name }}</h3>
+            <div class="price"><span class="fig">{{ festival.ticketPrice.average }}</span><span>/{{ festival.ticketPrice.currency }}</span></div>
+            <p class="mb-4">Fecha inicio/fin: <br> {{festival.dateStart}} - {{festival.dateEnd}}</p>
+            <p class="mb-4">Artistas confirmados.</p>
+            <div  *ngFor="let artist of festival.artists" >
+              <p><i class="bi bi-check2-all color-check fs-4"></i> {{ artist.name}}</p>
+            </div>
+            <p><a [routerLink]="['/festival/details', festival.id]" class="btn btn-outline-primary">Ver detalles</a></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

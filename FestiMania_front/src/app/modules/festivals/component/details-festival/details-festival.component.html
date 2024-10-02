@@ -1,0 +1,57 @@
+<div class="container-fluid">
+    <div class="p-fluid grid">
+        <p-card class="col-12">
+            <div class="grid">
+                <div class="lg:col-12">
+                    <p class="fs-3 text-uppercase">Detalles<span class="text-orange"> del festival</span> </p>
+                </div>
+            </div>
+        </p-card>
+
+        <div *ngIf="festival" class="col-12 festival-card festival-details-container">
+            <div class="festival-header">
+                <h2>{{ festival.name }}</h2>
+                <p class="festival-location">{{ festival.location.city }}, {{ festival.location.state }}, {{
+                    festival.location.country }}</p>
+            </div>
+
+            <div class="festival-details-grid">
+                <div class="detail-item">
+                    <span class="detail-label detail-label-right">Fecha de Inicio:</span>
+                    <span class="detail-value detail-label-right detail-label-right">{{ festival.dateStart | date:
+                        'longDate' }}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Fecha de Fin:</span>
+                    <span class="detail-value">{{ festival.dateEnd | date: 'longDate' }}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label detail-label-right">Capacidad:</span>
+                    <span class="detail-value detail-label-right">{{ festival.capacity | number }}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Precio Medio:</span>
+                    <span class="detail-value">{{ festival.ticketPrice.average | currency:
+                        festival.ticketPrice.currency }}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label detail-label-right">Géneros Musicales:</span>
+                    <div class="genre-list detail-item-right">
+                        <span *ngFor="let genre of festival.genres" class="genre-tag">{{ genre }}</span>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Artistas Participantes:</span>
+                    <ul class="artists-list">
+                        <li *ngIf="!festival.artists.length">Aún no hay artistas confirmados</li>
+                        <li *ngFor="let artist of festival.artists">
+                            {{ artist.name }}
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

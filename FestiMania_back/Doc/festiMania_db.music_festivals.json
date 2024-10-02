@@ -1,0 +1,224 @@
+[{
+  "_id": {
+    "$oid": "66f44fefc661e81bfd43ef80"
+  },
+  "name": "Coachella",
+  "location": {
+    "city": "Indio",
+    "state": "California",
+    "country": "USA"
+  },
+  "dates": {
+    "start": "2024-04-12",
+    "end": "2024-04-21"
+  },
+  "genres": [
+    "Rock",
+    "Pop",
+    "Hip-Hop",
+    "Electronic"
+  ],
+  "headliners": [
+    "Beyoncé",
+    "Radiohead",
+    "Kendrick Lamar"
+  ],
+  "capacity": 125000,
+  "ticketPrice": {
+    "average": 429,
+    "currency": "USD"
+  }
+},
+{
+  "_id": {
+    "$oid": "66f44fefc661e81bfd43ef81"
+  },
+  "name": "Glastonbury",
+  "location": {
+    "city": "Pilton",
+    "state": "Somerset",
+    "country": "UK"
+  },
+  "dates": {
+    "start": "2024-06-26",
+    "end": "2024-06-30"
+  },
+  "genres": [
+    "Rock",
+    "Indie",
+    "Pop",
+    "Electronic"
+  ],
+  "headliners": [
+    "Paul McCartney",
+    "Taylor Swift",
+    "Lana Del Rey"
+  ],
+  "capacity": 210000,
+  "ticketPrice": {
+    "average": 340,
+    "currency": "GBP"
+  }
+},
+{
+  "_id": {
+    "$oid": "66f44fefc661e81bfd43ef82"
+  },
+  "name": "Tomorrowland",
+  "location": {
+    "city": "Boom",
+    "state": "Antwerp",
+    "country": "Belgium"
+  },
+  "dates": {
+    "start": "2024-07-19",
+    "end": "2024-07-28"
+  },
+  "genres": [
+    "Electronic",
+    "House",
+    "Techno",
+    "Trance"
+  ],
+  "headliners": [
+    "Martin Garrix",
+    "David Guetta",
+    "Armin van Buuren"
+  ],
+  "capacity": 400000,
+  "ticketPrice": {
+    "average": 310,
+    "currency": "EUR"
+  }
+},
+{
+  "_id": {
+    "$oid": "66f44fefc661e81bfd43ef83"
+  },
+  "name": "Lollapalooza",
+  "location": {
+    "city": "Chicago",
+    "state": "Illinois",
+    "country": "USA"
+  },
+  "dates": {
+    "start": "2024-08-01",
+    "end": "2024-08-04"
+  },
+  "genres": [
+    "Rock",
+    "Alternative",
+    "Hip-Hop",
+    "Electronic"
+  ],
+  "headliners": [
+    "Foo Fighters",
+    "Billie Eilish",
+    "The Strokes"
+  ],
+  "capacity": 100000,
+  "ticketPrice": {
+    "average": 350,
+    "currency": "USD"
+  }
+},
+{
+  "_id": {
+    "$oid": "66f44fefc661e81bfd43ef84"
+  },
+  "name": "Rock in Rio",
+  "location": {
+    "city": "Rio de Janeiro",
+    "state": "Rio de Janeiro",
+    "country": "Brazil"
+  },
+  "dates": {
+    "start": "2024-09-27",
+    "end": "2024-10-06"
+  },
+  "genres": [
+    "Rock",
+    "Pop",
+    "Electronic"
+  ],
+  "headliners": [
+    "Queen",
+    "Guns N' Roses",
+    "Dua Lipa"
+  ],
+  "capacity": 700000,
+  "ticketPrice": {
+    "average": 450,
+    "currency": "BRL"
+  }
+},
+{
+  "_id": {
+    "$oid": "66f5dc1f4be5274588870882"
+  },
+  "name": "Ultra Music Festival",
+  "location": {
+    "city": "Miami",
+    "state": "Florida",
+    "country": "USA"
+  },
+  "dates": {
+    "start": {
+      "$date": "2024-03-21T23:00:00.000Z"
+    },
+    "end": {
+      "$date": "2024-03-23T23:00:00.000Z"
+    }
+  },
+  "genres": [
+    "Electronic",
+    "House",
+    "Techno"
+  ],
+  "headliners": [
+    "Tiësto",
+    "Carl Cox",
+    "Skrillex"
+  ],
+  "ticketPrice": {
+    "average": 350,
+    "currency": "USD"
+  },
+  "capacity": 50000,
+  "_class": "com.festimania.documentos.MusicFestivals"
+},
+{
+  "_id": {
+    "$oid": "66f5609c9f741b0fc23eafb6"
+  },
+  "name": "Ultra Music Festival",
+  "location": {
+    "city": "Miami",
+    "state": "Florida",
+    "country": "USA"
+  },
+  "dates": {
+    "start": {
+      "$date": "2024-03-21T23:00:00.000Z"
+    },
+    "end": {
+      "$date": "2024-03-23T23:00:00.000Z"
+    }
+  },
+  "genres": [
+    "Electronic",
+    "House",
+    "Techno"
+  ],
+  "headliners": [
+    "David Getta",
+    "Carl Cox",
+    "Skrillex"
+  ],
+  "ticketPrice": {
+    "average": 350,
+    "currency": "USD"
+  },
+  "capacity": 50000,
+  "_class": "com.festimania.documentos.MusicFestivals"
+}]

@@ -1,0 +1,198 @@
+[{
+  "_id": {
+    "$oid": "66f67d5aaf9ce6a6bc18c563"
+  },
+  "name": "Beyoncé",
+  "genres": [
+    "Pop",
+    "R&B"
+  ],
+  "nationality": "USA"
+},
+{
+  "_id": {
+    "$oid": "66f67d5aaf9ce6a6bc18c564"
+  },
+  "name": "Radiohead",
+  "genres": [
+    "Rock",
+    "Alternative"
+  ],
+  "nationality": "UK"
+},
+{
+  "_id": {
+    "$oid": "66f67d5aaf9ce6a6bc18c565"
+  },
+  "name": "Kendrick Lamar",
+  "genres": [
+    "Hip-Hop"
+  ],
+  "nationality": "USA"
+},
+{
+  "_id": {
+    "$oid": "66f67d5aaf9ce6a6bc18c566"
+  },
+  "name": "Paul McCartney",
+  "genres": [
+    "Rock",
+    "Pop"
+  ],
+  "nationality": "UK"
+},
+{
+  "_id": {
+    "$oid": "66f67d5aaf9ce6a6bc18c567"
+  },
+  "name": "Taylor Swift",
+  "genres": [
+    "Pop",
+    "Country"
+  ],
+  "nationality": "USA"
+},
+{
+  "_id": {
+    "$oid": "66f67d5aaf9ce6a6bc18c568"
+  },
+  "name": "Lana Del Rey",
+  "genres": [
+    "Pop",
+    "Indie"
+  ],
+  "nationality": "USA"
+},
+{
+  "_id": {
+    "$oid": "66f67f0daf9ce6a6bc18c569"
+  },
+  "name": "Martin Garrix",
+  "genres": [
+    "Electronic",
+    "House",
+    "Progressive House"
+  ],
+  "nationality": "Netherlands"
+},
+{
+  "_id": {
+    "$oid": "66f67f0daf9ce6a6bc18c56a"
+  },
+  "name": "David Guetta",
+  "genres": [
+    "Electronic",
+    "House"
+  ],
+  "nationality": "France"
+},
+{
+  "_id": {
+    "$oid": "66f67f0daf9ce6a6bc18c56b"
+  },
+  "name": "Armin van Buuren",
+  "genres": [
+    "Electronic",
+    "Trance"
+  ],
+  "nationality": "Netherlands"
+},
+{
+  "_id": {
+    "$oid": "66f67f0daf9ce6a6bc18c56c"
+  },
+  "name": "Foo Fighters",
+  "genres": [
+    "Rock",
+    "Alternative"
+  ],
+  "nationality": "USA"
+},
+{
+  "_id": {
+    "$oid": "66f67f0daf9ce6a6bc18c56d"
+  },
+  "name": "Billie Eilish",
+  "genres": [
+    "Pop",
+    "Alternative"
+  ],
+  "nationality": "USA"
+},
+{
+  "_id": {
+    "$oid": "66f67f0daf9ce6a6bc18c56e"
+  },
+  "name": "The Strokes",
+  "genres": [
+    "Rock",
+    "Indie"
+  ],
+  "nationality": "USA"
+},
+{
+  "_id": {
+    "$oid": "66f67f0daf9ce6a6bc18c56f"
+  },
+  "name": "Queen",
+  "genres": [
+    "Rock"
+  ],
+  "nationality": "UK"
+},
+{
+  "_id": {
+    "$oid": "66f67f0daf9ce6a6bc18c570"
+  },
+  "name": "Guns N' Roses",
+  "genres": [
+    "Rock",
+    "Hard Rock"
+  ],
+  "nationality": "USA"
+},
+{
+  "_id": {
+    "$oid": "66f67f0daf9ce6a6bc18c571"
+  },
+  "name": "Dua Lipa",
+  "genres": [
+    "Pop"
+  ],
+  "nationality": "UK"
+},
+{
+  "_id": {
+    "$oid": "66f67f0daf9ce6a6bc18c572"
+  },
+  "name": "Tiësto",
+  "genres": [
+    "Electronic",
+    "House",
+    "Trance"
+  ],
+  "nationality": "Netherlands"
+},
+{
+  "_id": {
+    "$oid": "66f67f0daf9ce6a6bc18c573"
+  },
+  "name": "Carl Cox",
+  "genres": [
+    "Electronic",
+    "House",
+    "Techno"
+  ],
+  "nationality": "UK"
+},
+{
+  "_id": {
+    "$oid": "66f67f0daf9ce6a6bc18c574"
+  },
+  "name": "Skrillex",
+  "genres": [
+    "Electronic",
+    "Dubstep"
+  ],
+  "nationality": "USA"
+}]

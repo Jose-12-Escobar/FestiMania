@@ -1,0 +1,122 @@
+<div class="container-fluid">
+    <div class="p-fluid grid">
+        <form class="col-12" [formGroup]="formGroupNewFestival" (ngSubmit)="guardarDatos()">
+
+            <p-card>
+
+                <div class="grid">
+                    <div class="lg:col-12">
+                        <p *ngIf="festivalId" class="fs-3 text-uppercase">Editar<span class="text-orange"> festival</span> </p>
+                        <p *ngIf="!festivalId" class="fs-3 text-uppercase">Crear<span class="text-orange"> nuevo festival</span> </p>
+                    </div>
+
+                    <div class="lg:col-4 md:col-12 py-4">
+                        <span class="p-float-label">
+                            <input pInputText id="name" formControlName="name" />
+                            <label htmlFor="name">Nombre</label>
+                        </span>
+                        <small *ngIf="noEsValido('name')">{{ getMensaje('name') }}</small>
+                    </div>
+
+                    <div class="lg:col-4 md:col-12 py-4">
+                        <span class="p-float-label">
+                            <p-calendar id="dateStart" [readonlyInput]="true" [showIcon]="true" dateFormat="yy/mm/dd"
+                                formControlName="dateStart"></p-calendar>
+                            <label for="dateStart">Fecha inicio</label>
+                        </span>
+                        <small *ngIf="noEsValido('dateStart')">{{ getMensaje('dateStart') }}</small>
+                    </div>
+
+                    <div class="lg:col-4 md:col-12 py-4">
+                        <span class="p-float-label">
+                            <p-calendar id="dateEnd" [readonlyInput]="true" [showIcon]="true" dateFormat="yy/mm/dd"
+                                formControlName="dateEnd"></p-calendar>
+                            <label for="dateEnd">Fecha fin</label>
+                        </span>
+                        <small *ngIf="noEsValido('dateEnd')">{{ getMensaje('dateEnd') }}</small>
+                    </div>
+
+                    <div class="lg:col-4 md:col-12 py-4">
+                        <span class="p-float-label">
+                            <p-inputNumber formControlName="average" [minFractionDigits]="2"
+                                inputId="average"></p-inputNumber>
+                            <label for="average">Precio</label>
+                        </span>
+                        <small *ngIf="noEsValido('average')">{{ getMensaje('average') }}</small>
+                    </div>
+
+                    <div class="lg:col-1 md:col-12 py-4">
+                        <span class="p-float-label">
+                            <input pInputText id="currency" formControlName="currency" />
+                            <label htmlFor="currency">Moneda</label>
+                        </span>
+                        <small *ngIf="noEsValido('currency')">{{ getMensaje('currency') }}</small>
+                    </div>
+
+                    <div class="lg:col-3 md:col-12 py-4">
+                        <span class="p-float-label">
+                            <p-inputNumber formControlName="capacity" inputId="capacity"></p-inputNumber>
+                            <label for="capacity">Capacidad</label>
+                        </span>
+                        <small *ngIf="noEsValido('capacity')">{{ getMensaje('capacity') }}</small>
+                    </div>
+
+                    <div class="lg:col-4 md:col-12 py-4">
+                        <span class="p-float-label">
+                            <p-multiSelect [options]="genresOption" formControlName="genres" optionLabel="name"
+                                id="genres"></p-multiSelect>
+                            <label htmlFor="genres">Generos musicales</label>
+                        </span>
+                        <small *ngIf="noEsValido('genres')">{{ getMensaje('genres') }}</small>
+                    </div>
+
+                </div>
+
+            </p-card>
+
+            <p-card class="col-12 mt-3">
+                <p class="fs-6 text-uppercase">Localidad</p>
+                <div class="grid">
+
+                    <div class="lg:col-4 md:col-12 py-4">
+                        <span class="p-float-label">
+                            <input pInputText id="country" formControlName="country" />
+                            <label htmlFor="nombre">Pais</label>
+                        </span>
+                        <small *ngIf="noEsValido('country')">{{ getMensaje('country') }}</small>
+                    </div>
+
+                    <div class="lg:col-4 md:col-12 py-4">
+                        <span class="p-float-label">
+                            <input pInputText id="city" formControlName="city" />
+                            <label htmlFor="city">Ciudad</label>
+                        </span>
+                        <small *ngIf="noEsValido('city')">{{ getMensaje('city') }}</small>
+                    </div>
+
+                    <div class="lg:col-4 md:col-12 py-4">
+                        <span class="p-float-label">
+                            <input pInputText id="state" formControlName="state" />
+                            <label htmlFor="state">Estado</label>
+                        </span>
+                        <small *ngIf="noEsValido('state')">{{ getMensaje('state') }}</small>
+                    </div>
+
+                </div>
+
+                <div class="grid py-2">
+                    <p-toast></p-toast>
+                    <div class="lg:col-2 md:col-6">
+                        <button type="submit" pButton pRipple label="Guardar" icon="pi pi-save"
+                            class="btn-orange"></button>
+                    </div>
+                    <div class="lg:col-2 md:col-6">
+                        <button pButton pRipple label="Cancelar" icon="pi pi-times" class="btn-orange"
+                            (click)="clearForm()"></button>
+                    </div>
+                </div>
+            </p-card>
+
+        </form>
+    </div>
+</div>

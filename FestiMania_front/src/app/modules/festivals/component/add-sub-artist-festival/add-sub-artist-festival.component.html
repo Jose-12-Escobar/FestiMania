@@ -1,0 +1,73 @@
+<div class="container-fluid">
+    <p-toast></p-toast>
+    <div class="p-fluid grid">
+        <p-card class="col-12">
+            <div class="lg:col-12">
+                <p *ngIf="paramRoute==='add'" class="fs-3 text-uppercase">Añadir <span
+                        class="text-orange">artistas</span> </p>
+                <p *ngIf="paramRoute==='sub'" class="fs-3 text-uppercase">Eliminar <span
+                        class="text-orange">artistas</span> </p>
+            </div>
+            <p-table #dc [value]="festivals" [tableStyle]="{ 'min-width': '50rem', 'text-align': 'center' }"
+                [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5, 10, 25]"
+                styleClass="p-datatable-striped  w-100">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th pSortableColumn="name" style="width: 15%;">Nombre<p-sortIcon field="name"></p-sortIcon></th>
+                        <th pSortableColumn="genres" style="width: 20%;">Artistas<p-sortIcon
+                                field="genres"></p-sortIcon></th>
+                        <th style="width: 5%;"></th>
+                        <th style="width: 2%;"></th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <input class="p-inputtext w-100" pInputText type="text"
+                                (input)="dc.filter($any($event.target)?.value, 'name', 'contains')"
+                                [value]="$any(dc.filters['name'])?.value">
+                        </th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-festival>
+                    <tr>
+                        <td style="text-align: center;">{{ festival.name }}</td>
+                        <td style="text-align: center;">
+                            <ng-container *ngFor="let artist of festival.artists; let i = index">
+                                {{ artist.name }}<span *ngIf="i < festival.artists.length - 1">, </span>
+                            </ng-container>
+                        </td>
+                        <td style="text-align: center;">
+                            <p-dropdown [options]="artistsOptions" 
+                                [(ngModel)]="selectedOption"
+                                placeholder="Seleccione un artista"
+                                 optionLabel="name"
+                                 appendTo="body">
+                                 
+                                <ng-template let-option pTemplate="item">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <!-- Artista Nombre -->
+                                        <span *ngIf="paramRoute==='add'" (click)="addArtist(option.id, festival.id)">{{ option.name }}</span>
+                                        <span *ngIf="paramRoute==='sub'" (click)="subArtist(option.id, festival.id)">{{ option.name }}</span>
+                                        <!-- Icono de plus clickable -->
+                                        <i *ngIf="paramRoute==='add'" class="pi pi-plus-circle" s
+                                            style="cursor: pointer; margin-left: 10px; padding: 5px; background-color: green; color: white; border-radius: 50%;"
+                                            (click)="addArtist(option.id, festival.id)"></i>
+                                        <i *ngIf="paramRoute==='sub'" class="pi pi-minus-circle" s
+                                            style="cursor: pointer; margin-left: 10px; padding: 5px; background-color: rgb(199, 5, 5); color: white; border-radius: 50%;"
+                                            (click)="subArtist(option.id, festival.id)"></i>
+                                    </div>
+                                </ng-template>
+                            </p-dropdown>
+                        </td>
+                        <td style="text-align: right;" [routerLink]="['/festival/details', festival.id]"><span
+                                class="pi pi-ellipsis-v" pTooltip="Detalles" tooltipPosition="left"
+                                style="color: rgb(0, 0, 0)"></span>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </p-card>
+    </div>
+</div>
