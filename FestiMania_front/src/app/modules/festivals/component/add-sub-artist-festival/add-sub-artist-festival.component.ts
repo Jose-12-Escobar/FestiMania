@@ -32,7 +32,6 @@ export class AddSubArtistFestivalComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.paramRoute = params.get('id');
     })
-    console.log('param:', this.paramRoute)
     this._artists.getAllArtists().subscribe({
       next: (res: Artist[]) => {
         this.artists = res;
@@ -51,7 +50,6 @@ export class AddSubArtistFestivalComponent implements OnInit {
     this._festivals.addArtist(festivalId, artistId).subscribe({
       next: (res: Festival) => {
         this._messageService.add({ severity: 'success', summary: 'Success', detail: 'Artista añadido' });
-        console.log('artista añadido al festival:', res);
         this.selectedOption=null;
         this._festivals.getAllFestivals().subscribe({
           next: (res: Festival[]) => {
@@ -73,7 +71,6 @@ export class AddSubArtistFestivalComponent implements OnInit {
       next: (res: Festival) => {
         this._messageService.add({ severity: 'success', summary: 'Success', detail: 'Artista eliminado' });
         this.selectedOption=null;
-        console.log('res de eliminar:', res)
         this._festivals.getAllFestivals().subscribe({
           next: (res: Festival[]) => {
             this.festivals = res;

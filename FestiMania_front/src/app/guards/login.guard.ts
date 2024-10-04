@@ -1,14 +1,15 @@
 import { CanActivateFn } from '@angular/router';
+import { SessionStorageService } from '../modules/auth/services/session-storage.service';
+import { inject } from '@angular/core';
 
 
 export const loginGuard: CanActivateFn = () => {
 
-  //const _loclaStorageService = inject(LocalStorageService);
+  const _sessionStorage = inject(SessionStorageService);
 
-  /*if (_loclaStorageService.getItem('role')) {
+  if (_sessionStorage.getItem('usuario')) {
     return true;
   } else {
     return false;
-  }*/
- return true
+  }
 };

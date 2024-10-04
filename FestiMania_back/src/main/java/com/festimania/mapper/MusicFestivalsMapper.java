@@ -1,7 +1,6 @@
 package com.festimania.mapper;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.festimania.bo.impl.ArtistBOImpl;
 import com.festimania.documentos.MusicFestivals;

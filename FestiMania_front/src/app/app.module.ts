@@ -66,8 +66,8 @@ import { ErrorInterceptorServiceTsService } from './modules/auth/services/error-
     CalendarModule,
   ],
   providers: [
-    //{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorServiceTsService, multi: true },
-    //{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorServiceTsService, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorServiceTsService, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorServiceTsService, multi: true }
   ],
   bootstrap: [AppComponent]
 })

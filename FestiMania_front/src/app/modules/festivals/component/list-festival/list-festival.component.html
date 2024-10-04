@@ -47,7 +47,7 @@
               <td style="text-align: center;">{{ festival.genres }}</td>
               <td style="text-align: center;">{{ festival.dateStart }}</td>
               <td style="text-align: center;">{{ festival.dateEnd }}</td>
-              <td style="text-align: right;"  [routerLink]="['/festival/edit', festival.id]"><span class="pi pi-pencil" pTooltip="Editar festival" tooltipPosition="left"
+              <td *ngIf="isAdmin" style="text-align: right;"  [routerLink]="['/festival/edit', festival.id]"><span class="pi pi-pencil" pTooltip="Editar festival" tooltipPosition="left"
                   style="color: blue"></span>
               </td>
               <td style="text-align: right;"  [routerLink]="['/festival/details', festival.id]"><span class="pi pi-ellipsis-v" pTooltip="Detalles" tooltipPosition="left"
@@ -59,4 +59,3 @@
       </p-card>
     </div>
   </div>
-  

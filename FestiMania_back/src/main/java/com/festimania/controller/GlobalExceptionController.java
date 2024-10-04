@@ -4,6 +4,8 @@ import java.util.NoSuchElementException;
 
 import com.festimania.exceptions.ResourceNotFoundException;
 
+import io.jsonwebtoken.ExpiredJwtException;
+
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -56,5 +58,11 @@ public class GlobalExceptionController {
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<String> handleNoSuchElementException(NoSuchElementException ex) {
         return new ResponseEntity<>("Elemento no encontrado", HttpStatus.NOT_FOUND);
+    }
+    
+    @ExceptionHandler(ExpiredJwtException.class)
+    public ResponseEntity<String> handleExpiredJwtException(ExpiredJwtException ex) {
+        String mensaje = "El token JWT ha expirado: " + ex.getMessage();
+        return new ResponseEntity<>(mensaje, HttpStatus.UNAUTHORIZED);
     }
 }

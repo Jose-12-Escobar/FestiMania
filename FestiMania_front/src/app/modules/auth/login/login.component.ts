@@ -6,6 +6,8 @@ import { AuthService } from '../services/auth.service';
 import { LoginIn } from '../models/login-model';
 import { MessageService } from 'primeng/api';
 import { SessionStorageService } from '../services/session-storage.service';
+import { EncodeService } from '../services/encode.service';
+import { ValidationFormService } from 'src/app/Services/validationForm.service';
 
 @Component({
   selector: 'app-login',
@@ -15,9 +17,9 @@ import { SessionStorageService } from '../services/session-storage.service';
 export class LoginComponent implements OnInit {
 
   formGroupLogin !: FormGroup;
-  dataClient !: LoginIn;
-  emailOrDocumentoId: boolean = true;
-  fcnEmailOrDocumentoId: string = 'email';
+  dataUser !: LoginIn;
+  emailOrUsername: boolean = true;
+  fcnemailOrUsername: string = 'email';
   passwordClick : boolean = true;
 
   constructor(public _showSB: SidebarService,
@@ -25,7 +27,9 @@ export class LoginComponent implements OnInit {
     private _router: Router,
     private _auth: AuthService,
     private _message: MessageService,
-    private _sessionStorage: SessionStorageService) {
+    private _sessionStorage: SessionStorageService,
+    private _encode: EncodeService,
+    private _validationForm: ValidationFormService  ) {
     _showSB.changeShowSidebar(false)
   }
 
@@ -36,84 +40,52 @@ export class LoginComponent implements OnInit {
   initFormLogin() {
     this.formGroupLogin = this._fb.group({
       email: [null, [Validators.pattern("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")]],
-      documentoId: [null, [Validators.minLength(9), Validators.maxLength(9)]],
+      username: [null, [Validators.minLength(3), Validators.maxLength(25)]],
       password: [null, [Validators.required, Validators.minLength(8), Validators.maxLength(16)]]
     });
   }
 
   noEsValido(campo: string) {
-    return this.formGroupLogin.controls[campo].touched && this.formGroupLogin.controls[campo].invalid;
+    return this._validationForm.noEsValido(this.formGroupLogin, campo)
   }
 
   getMensaje(campo: string): string {
-    const error = this.formGroupLogin.get(campo)?.errors;
-    let msg: string = "";
-
-    if (error?.['required']) {
-      msg = 'El campo es obligatorio';
-    }
-    else if (error?.['minlength']) {
-      msg = {
-        password: "El mínimo de caracteres válido es 8",
-        documentoId: "El mínimo de caracteres válido es 9"
-      }[campo] || '';
-    } else if (error?.['maxlength']) {
-      msg = {
-        password: "El máximo de caracteres válido es 16",
-        documentoId: "El máximo de caracteres válido es 9"
-      }[campo] || '';
-    }
-    else if (error?.['pattern']) {
-      msg = 'No cumple el patron estandar';
-    }
-
-    return msg;
+    return this._validationForm.getMensaje(this.formGroupLogin, campo);
   }
 
   login() {
-    this._router.navigate(['/festival/home']);
-    /*if (this.formGroupLogin.invalid) {
+
+    if (this.formGroupLogin.invalid) {
       this.formGroupLogin.markAllAsTouched();
     } else {
-
-      this.dataClient = {
-        "usernameOrEmail": this.emailOrDocumentoId ? this.formGroupLogin.get('email')?.value : this.formGroupLogin.get('documentoId')?.value,
+      this.dataUser = {
+        "usernameOrEmail": this.emailOrUsername ? this.formGroupLogin.get('email')?.value : this.formGroupLogin.get('username')?.value,
         "password": this.formGroupLogin.get('password')?.value,
       }
-      this._auth.login(this.dataClient).subscribe({
+
+      this._auth.login(this.dataUser).subscribe({
         next: (res) => {
-
-          this._sessionStorage.setItem('token', res.token)
-
-          this._localStorage.setItem('role', res.roles);
-          if (res.roles === 'ROLE_ADMIN') {
-            this._router.navigate(['/admin/homeMenu'])
-          }
-          else if (res.roles === 'ROLE_USER') {
-            this._localStorage.setItem('dni', res.username)
-            this._router.navigate(['/client/homeMenu'])
-          }
-          else{
-            this._message.add({ severity: 'error', summary: 'Error', detail: 'A ocurrido un error al iniciar sesión' });;
-          }
+          const userEncode = this._encode.encodeData(JSON.stringify(res))
+          this._sessionStorage.setItem('usuario', userEncode)
+          this._router.navigate(['/festival/home']);
         },
-        error: () => {
-          this._message.add({ severity: 'error', summary: 'Credenciales erróneas', detail: 'No existe ninguna cliente con los datos introducidos' });
+        error: (err) => {
+          this._message.add({ severity: 'error', summary: 'Credenciales erróneas', detail: 'No existe ninguna usuario con los datos introducidos' });
         }
       })
-    }*/
+    }
   }
 
   isEmail() {
-    this.emailOrDocumentoId = true;
-    this.fcnEmailOrDocumentoId = 'email';
-    this.formGroupLogin.get('documentoId')?.reset();
+    this.emailOrUsername = true;
+    this.fcnemailOrUsername = 'email';
+    this.formGroupLogin.reset();
   }
 
   isUsername() {
-    this.emailOrDocumentoId = false;
-    this.fcnEmailOrDocumentoId = 'documentoId';
-    this.formGroupLogin.get('email')?.reset();
+    this.emailOrUsername = false;
+    this.fcnemailOrUsername = 'username';
+    this.formGroupLogin.reset();
   }
 
   passwordVisibility() {

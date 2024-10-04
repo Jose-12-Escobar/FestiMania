@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { ApiService } from 'src/app/Services/api.service';
 import { Festival } from '../models/festival-model';
 import { Genre } from '../models/gener-model';
+import { skipApiKey } from '../../auth/http.contex';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class FestivalsService {
 
 
   getFestivalsRecent(): Observable<Festival[]> {
-    return this.http.get<Festival[]>(`${this.baseUrl}/recent`)
+    return this.http.get<Festival[]>(`${this.baseUrl}/recent`, { context: skipApiKey() })
   }
 
   getGenres(): Observable<Genre[]> {

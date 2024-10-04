@@ -24,10 +24,10 @@
 
         <div class="col-lg-4 collapse navbar-collapse pe-5 text-center" [class.show]="show" id="menu">
           <ul class="navbar-nav ms-auto my-2 my-lg-0">
-            <li *ngIf="true" class="nav-item"><a routerLink="/auth/login" class="nav-link" href="#">Iniciar sesión</a></li>
-            <li *ngIf="true" class="nav-item"><a routerLink="/auth/register" class="nav-link" href="#">Registrar</a></li>
-            <li *ngIf="true" class="nav-item"><a routerLink="/festival/home" class="nav-link" href="#">Menú</a></li>
-            <li *ngIf="true" (click)="logout()" class="nav-item"><a class="nav-link" href="#">Cerrar sesión</a></li>
+            <li *ngIf="!_authService.isLogged()" class="nav-item"><a routerLink="/auth/login" class="nav-link" href="#">Iniciar sesión</a></li>
+            <li *ngIf="!_authService.isLogged()" class="nav-item"><a routerLink="/auth/register" class="nav-link" href="#">Registrar</a></li>
+            <li *ngIf="_authService.isLogged()" class="nav-item"><a routerLink="/festival/home" class="nav-link" href="#">Menú</a></li>
+            <li *ngIf="_authService.isLogged()" (click)="logout()" class="nav-item"><a class="nav-link" href="#">Cerrar sesión</a></li>
           </ul>
         </div>
 

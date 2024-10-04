@@ -11,10 +11,13 @@ export class SessionStorageService {
 
   getItem(key: string): any {
     const value = sessionStorage.getItem(key);
-    if (value) {
+    if (value)
       return JSON.parse(value);
-    }
     return null;
+  }
+
+  deleteItem(key: string): void {
+    sessionStorage.removeItem(key);
   }
 
 }

@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { MessageService } from 'primeng/api';
 import { RegisterIn } from '../models/register-model';
+import { ValidationFormService } from 'src/app/Services/validationForm.service';
+import { EncodeService } from '../services/encode.service';
 
 @Component({
   selector: 'app-register',
@@ -15,14 +17,14 @@ import { RegisterIn } from '../models/register-model';
 export class RegisterComponent implements OnInit {
 
   formGroupRegister !: FormGroup;
-  dataClient !: RegisterIn;
+  dataUser !: RegisterIn;
   passwordClick : boolean = true;
 
   constructor( public _show: SidebarService,
               private _fb: FormBuilder,
-              private _router: Router,
               private _authService: AuthService,
-              private _messageService: MessageService){
+              private _messageService: MessageService,
+              private _validationForm: ValidationFormService ){
     _show.changeShowSidebar(false)
   }
 
@@ -34,7 +36,7 @@ export class RegisterComponent implements OnInit {
     this.formGroupRegister = this._fb.group({
       nombre: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
       apellidos: [null, [Validators.required,  Validators.minLength(3), Validators.maxLength(40)]],
-      documentoId:[null, [Validators.required, Validators.maxLength(9)]],
+      username:[null, [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
       email: [null, [Validators.required, Validators.pattern("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")]],
       password: [null, [Validators.required, Validators.minLength(8), Validators.maxLength(16)]],
       confirmPassword: [null, [Validators.required]]
@@ -45,63 +47,30 @@ export class RegisterComponent implements OnInit {
   }
 
   noEsValido(campo: string) {
-    return this.formGroupRegister.controls[campo].touched && this.formGroupRegister.controls[campo].invalid;
+    return this._validationForm.noEsValido(this.formGroupRegister, campo)
   }
 
   getMensaje(campo: string): string {
-    const error = this.formGroupRegister.get(campo)?.errors;
-    let msg:string="";
-
-    if (error?.['required']) {
-      msg='El campo es obligatorio';
-    }
-    else if(error?.['minlength']){
-      msg= {
-        nombre:"El mínimo de caracteres válido es 3",
-        apellidos:"El mínimo de caracteres válido es 3",
-        password:"El mínimo de caracteres válido es 8",
-        username:"El mínimo de caracteres válido es 3"
-        }[campo]|| '';
-    }
-    else if(error?.['maxlength']){
-      msg={
-        nombre:"El máximo de caracteres válido es 30",
-        apellidos:"El máximo de caracteres válido es 40",
-        password:"El máximo de caracteres válido es 16",
-        username:"El máximo de caracteres válido es 10"
-      } [campo]|| '';
-    }else if(error?.['dniInvalid']) {
-      msg = 'El DNI no es valido.'
-    }
-    else if(error?.['documentInvalid']) {
-      msg = 'Documento de identificacion invalido'
-    }
-    else if(error?.['nieInvalid']) {
-      msg = 'El NIE no es valido'
-    }
-    else if(error?.['pattern']){
-      msg= 'No cumple el patron estandar';
-    }
-
-    return msg;
+    return this._validationForm.getMensaje(this.formGroupRegister, campo);
   }
+
 
   register(){
     if (this.formGroupRegister.invalid) {
           this.formGroupRegister.markAllAsTouched();
 
         }else{
-          this.dataClient = {
+          this.dataUser = {
             "name": this.formGroupRegister.get('nombre')?.value,
             "lastname": this.formGroupRegister.get('apellidos')?.value,
-            "username": this.formGroupRegister.get('documentoId')?.value,
+            "username": this.formGroupRegister.get('username')?.value,
             "email": this.formGroupRegister.get('email')?.value,
             "password": this.formGroupRegister.get('password')?.value
           }
-          this._authService.register(this.dataClient).subscribe({
+          this._authService.register(this.dataUser).subscribe({
             next: (res) => {
               this._messageService.add({ severity: 'success', summary: 'Genial', detail: 'Se ha realizado el registro correctamente' });
-              this._router.navigate(['/auth/login']);
+              this.formGroupRegister.reset()
             },
             error: () => {
               this._messageService.add({ severity: 'error', summary: 'Error', detail: 'Verifique los datos e intentelo de nuevo' });

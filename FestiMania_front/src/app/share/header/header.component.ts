@@ -3,6 +3,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { HeaderService } from 'src/app/Services/header.service';
 import { SidebarService } from 'src/app/Services/sidebar.service';
 import { AuthService } from 'src/app/modules/auth/services/auth.service';
+import { SessionStorageService } from 'src/app/modules/auth/services/session-storage.service';
 
 
 @Component({
@@ -19,7 +20,8 @@ export class HeaderComponent implements OnInit {
   constructor(private _showHD: HeaderService,
               private _router: Router,
               public _showSB: SidebarService,
-              public _authService: AuthService,) {
+              public _authService: AuthService,
+              private _sessionStorage: SessionStorageService) {
     this._showHD.showHeader.subscribe( res => { this.scroll = res});
   }
 
@@ -28,6 +30,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this._router.events.subscribe(event => {
 
       if (event instanceof NavigationEnd) {
@@ -53,7 +56,8 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(){
-    this._router.navigate(['/auth/login'])
+    this._sessionStorage.deleteItem('usuario')
+    this._router.navigate(['/home'])
   }
 
 }

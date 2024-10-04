@@ -14,10 +14,10 @@
                 </div>
                 <form class="user" [formGroup]="formGroupLogin" (submit)="login()">
 
-                  <p class="fs-6 text-center cursor-pointer mb-4"><span (click)="isEmail()" [ngClass]="{ 'text-primary' : emailOrDocumentoId }">correo
-                    electrónico</span> / <span (click)="isUsername()" [ngClass]="{ 'text-primary' : !emailOrDocumentoId }">DNI o NIE</span></p>
+                  <p class="fs-6 text-center cursor-pointer mb-4"><span (click)="isEmail()" [ngClass]="{ 'text-primary' : emailOrUsername }">Correo
+                    electrónico</span> / <span (click)="isUsername()" [ngClass]="{ 'text-primary' : !emailOrUsername }">Nombre de usuario</span></p>
 
-                  <div *ngIf="emailOrDocumentoId" class=" mb-5">
+                  <div *ngIf="emailOrUsername" class=" mb-5">
                     <span class="p-float-label">
                       <input pInputText id="email" formControlName="email" class="form-control-user" />
                       <label htmlFor="email">Correo electrónico</label>
@@ -25,12 +25,12 @@
                     <small *ngIf="noEsValido('email')">{{ getMensaje('email') }}</small>
                   </div>
 
-                  <div *ngIf="!emailOrDocumentoId" class=" mb-5">
+                  <div *ngIf="!emailOrUsername" class=" mb-5">
                     <span class="p-float-label">
-                      <input pInputText id="documentoId" formControlName="documentoId" class="form-control-user" />
-                      <label htmlFor="email">DNI | NIE</label>
+                      <input pInputText id="username" formControlName="username" class="form-control-user" />
+                      <label htmlFor="username">Nombre de usuario</label>
                     </span>
-                    <small *ngIf="noEsValido('documentoId')">{{ getMensaje('documentoId') }}</small>
+                    <small *ngIf="noEsValido('username')">{{ getMensaje('username') }}</small>
                   </div>
 
                   <div class="">

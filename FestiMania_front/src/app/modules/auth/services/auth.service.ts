@@ -29,7 +29,7 @@ export class AuthService {
   }
 
   isLogged(): boolean {
-    return this._sessionService.getItem('token') ? true : false;
+    return this._sessionService.getItem('usuario') ? true : false;
   }
 
 }

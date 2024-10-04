@@ -8,6 +8,7 @@ import { Festival } from '../../models/festival-model';
 import { IsoDateLocalPipe } from '../../pipes/IsoDataLocalPipe';
 import { ActivatedRoute } from '@angular/router';
 import { ValidatorDate } from '../../validators/validatorDate';
+import { ValidationFormService } from 'src/app/Services/validationForm.service';
 
 @Component({
   selector: 'app-new-festinaval',
@@ -29,6 +30,7 @@ export class NewFestinavalComponent implements OnInit {
     private isoDatePipe: IsoDateLocalPipe,
     private _messageService: MessageService,
     private route: ActivatedRoute,
+    private _validationForm: ValidationFormService,
   ) {
     _show.changeShowSidebar(true);
   }
@@ -49,15 +51,15 @@ export class NewFestinavalComponent implements OnInit {
 
   initFormNewFestival() {
     this.formGroupNewFestival = this._fb.group({
-      name: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
+      name: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
       dateStart: [null, [Validators.required, ValidatorDate.DateLowerCurrent]],
       dateEnd: [null, [Validators.required,]],
       average: [null, [Validators.required]],
       currency: [null, [Validators.required]],
       capacity: [null, [Validators.required]],
-      country: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
-      state: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
-      city: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
+      country: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
+      state: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
+      city: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
       genres: [null, [Validators.required]],
     }, {
       validators: ValidatorDate.fechaFinSuperiorFechaInicio('dateStart', 'dateEnd')
@@ -91,32 +93,11 @@ export class NewFestinavalComponent implements OnInit {
   }
 
   noEsValido(campo: string) {
-    return this.formGroupNewFestival.controls[campo].touched && this.formGroupNewFestival.controls[campo].invalid;
+    return this._validationForm.noEsValido(this.formGroupNewFestival, campo)
   }
 
   getMensaje(campo: string): string {
-    const error = this.formGroupNewFestival.get(campo)?.errors;
-    let msg: string = "";
-
-    if (error?.['required']) {
-      msg = 'El campo es obligatorio';
-    }
-    else if (error?.['minlength']) {
-      msg = "El mínimo de caracteres válido es 3";
-    }
-    else if (error?.['maxlength']) {
-      msg = 'Exede el maximo de caracteres';
-    }
-    else if (error?.['fechaInferiorActual']) {
-      msg = 'La fecha de inicio tiene que ser superior a la fecha actual.'
-    }
-    else if (error?.['fechaFinAnteriorOIgualFechaInicio']) {
-      msg = 'La fecha de fin tiene que ser superior a la fecha de inicio.'
-    }
-    else if (error?.['menoriaEdad']) {
-      msg = 'Debe ser mayor de edad.'
-    }
-    return msg;
+    return this._validationForm.getMensaje(this.formGroupNewFestival, campo);
   }
 
 

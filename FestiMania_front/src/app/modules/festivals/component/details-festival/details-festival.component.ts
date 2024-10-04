@@ -30,7 +30,6 @@ export class DetailsFestivalComponent implements OnInit {
     this._festivals.getFestivalById(this.festivalId).subscribe({
       next: (res: Festival) => {
         this.festival = res;
-        console.log('detalles festivales:', this.festival)
       }
     });
   }
