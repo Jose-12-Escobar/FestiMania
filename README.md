@@ -44,12 +44,12 @@
 
 **Una vez arrancada la aplicación:**
 - La aplicación está programada para tener un único usuario administrador ("ROLE_ADMIN"), que será el primero en registrarse. El resto de los usuarios tendrán el rol de usuario ("ROLE_USER").
-- Usuario administrador:
- - Nombre de usuario: jesco
- - Email: jesco@gmail.com
- - Contraseña: 12341234
+1. Usuario administrador:
+   - Nombre de usuario: jesco
+   - Email: jesco@gmail.com
+   - Contraseña: 12341234
    
-- Usuario user:
- - Nombre de usuario: luisito
- - Email: luis@gmail.com
- - Contraseña: 12341234
+2. Usuario user:
+   - Nombre de usuario: luisito
+   - Email: luis@gmail.com
+   - Contraseña: 12341234
